@@ -26,7 +26,7 @@ def kotti_configure(settings):
     settings['pyramid.includes'] += ' xyzzy'
     settings['kotti.alembic_dirs'] += ' xyzzy:alembic'
     settings['kotti.available_types'] += ' xyzzy.resources.CustomContent'
-    settings['kotti.fanstatic.view_needed'] += ' xyzzy.fanstatic.css_and_js'
+    #settings['kotti.fanstatic.view_needed'] += ' xyzzy.fanstatic.css_and_js'
     File.type_info.addable_to.append('CustomContent')
 
 

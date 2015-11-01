@@ -18,6 +18,14 @@ version = '0.1dev'
 install_requires = [
     'Kotti>=1.0.0',
     'kotti_tinymce',
+    'kotti_accounts',
+    'kotti_blog',
+    'kotti_calendar',
+    'kotti_jsonapi',
+    'kotti_settings',
+    'kotti_velruse',
+    'kotti_compass',
+    'kotti_dashboard',
 ]
 
 
