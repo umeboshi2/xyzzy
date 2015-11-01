@@ -41,7 +41,7 @@ setup(
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
-        "License :: Repoze Public License",
+        "License :: Public Domain",
     ],
     author='Kotti developers',
     author_email='kotti@googlegroups.com',
