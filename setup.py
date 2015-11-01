@@ -54,7 +54,15 @@ setup(
     zip_safe=False,
     install_requires=install_requires,
     tests_require=[],
-    dependency_links=[],
+    dependency_links=[
+        'https://github.com/knowah/PyPDF2/archive/master.tar.gz#egg=PyPDF2-1.15dev',
+        'https://github.com/repoze/repoze.workflow/archive/master.tar.gz#egg=repoze.workflow-master',
+        'https://github.com/umeboshi2/Kotti/archive/master.tar.gz#egg=Kotti-1.2.2-dev',
+        'https://github.com/umeboshi2/kotti_jsonapi/archive/master.tar.gz#egg=kotti_jsonapi-master',
+        'https://github.com/umeboshi2/kotti_compass/archive/master.tar.gz#egg=kotti_compass-master',
+        'https://github.com/umeboshi2/kotti_dashboard/archive/master.tar.gz#egg=kotti_dashboard-master',
+
+    ],
     entry_points={
         'fanstatic.libraries': [
             'xyzzy = xyzzy.fanstatic:library',
