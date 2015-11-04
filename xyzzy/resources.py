@@ -10,12 +10,29 @@ from kotti.resources import Content
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
-from sqlalchemy import Unicode
+from sqlalchemy import Unicode, UnicodeText
+
 from zope.interface import implements
 
 from xyzzy import _
 
+class MarkDownDocument(Content):
+    id = Column(Integer(), ForeignKey('contents.id'), primary_key=True)
+    body = Column(UnicodeText())
+    mime_type = Column(Unicode(30))
+    
+    type_info = Content.type_info.copy(
+        name=u'MarkDownDocument',
+        title=u'MarkDownDocument',
+        add_view='add_markdown',
+        addable_to=[u'Document', u'MarkDownDocument'],
+        )
 
+    def __init__(self, body=u'', mime_type='text/markdown', **kwargs):
+        super(MarkDownDocument, self).__init__(**kwargs)
+        self.body = body
+        self.mime_type = mime_type
+        
 class CustomContent(Content):
     """ A custom content type. """
 
