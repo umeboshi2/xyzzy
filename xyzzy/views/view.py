@@ -9,10 +9,31 @@ from pyramid.view import view_config
 from pyramid.view import view_defaults
 
 from xyzzy import _
-from xyzzy.resources import CustomContent
+from xyzzy.resources import CustomContent, MarkDownDocument
 from xyzzy.fanstatic import css_and_js
 from xyzzy.views import BaseView
 
+from kotti.resources import Content
+from kotti_dashboard.fanstatic import eidolon
+from kotti_compass.fanstatic import mystyles
+
+
+# this is the default home view
+def main_view(context, request):
+    mystyles['bootstrap-custom']['cornsilk'].need()
+    eidolon.need()
+    return {}
+
+
+# we need to have a view registered to handle
+# the MarkDownDocument context
+@view_defaults(context=MarkDownDocument, permission='view')
+class MarkdownView(BaseView):
+    @view_config(name='view', permission='view',
+                 renderer='xyzzy:templates/markdownview.mako')
+    def default_view(self):
+        return {}
+    
 
 @view_defaults(context=CustomContent, permission='view')
 class CustomContentViews(BaseView):
@@ -47,3 +68,5 @@ class CustomContentViews(BaseView):
         return {
             'foo': _(u'bar'),
         }
+
+
