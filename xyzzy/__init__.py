@@ -25,7 +25,7 @@ def kotti_configure(settings):
 
     settings['pyramid.includes'] += ' xyzzy'
     settings['kotti.alembic_dirs'] += ' xyzzy:alembic'
-    settings['kotti.available_types'] += ' xyzzy.resources.CustomContent'
+    settings['kotti.available_types'] += ' xyzzy.resources.MarkDownDocument'
     #settings['kotti.fanstatic.view_needed'] += ' xyzzy.fanstatic.css_and_js'
     File.type_info.addable_to.append('CustomContent')
 
@@ -41,4 +41,10 @@ def includeme(config):
     config.add_translation_dirs('xyzzy:locale')
     config.add_static_view('static-xyzzy', 'xyzzy:static')
 
+    config.add_route('home', '/')
+    config.add_view('xyzzy.views.view.main_view',
+                    route_name='home',
+                    permission='view',
+                    renderer='kotti_dashboard:templates/mainview.mako')
+    
     config.scan(__name__)
