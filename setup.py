@@ -26,6 +26,7 @@ install_requires = [
     'kotti_velruse',
     'kotti_compass',
     'kotti_dashboard',
+    'Markdown',
 ]
 
 

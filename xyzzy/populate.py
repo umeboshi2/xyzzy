@@ -1,5 +1,6 @@
 import os
 
+import markdown
 from kotti.populate import populate_users
 from .resources import MarkDownDocument
 
@@ -9,7 +10,7 @@ from pyramid.threadlocal import get_current_registry
 
 from kotti import get_settings
 from kotti.resources import DBSession
-from kotti.resources import Node
+from kotti.resources import Node, Document
 
 from kotti.security import SITE_ACL
 from kotti.util import _
@@ -40,7 +41,8 @@ def populate():
         root_atts = make_markdown_attrs('', root_filename,
                                         title='Welcome to XYZZY',
                                         description='Home Page')
-        root = MarkDownDocument(**root_atts)
+        root_atts['body'] = markdown.markdown(root_atts['body'])
+        root = Document(**root_atts)
         root.__acl__ = SITE_ACL
         DBSession.add(root)
         webatts = make_markdown_attrs('webdesign',
@@ -56,6 +58,7 @@ def populate():
             wptitle = ' '.join([p.capitalize() for p in wp.split('-')])
             wpatts = make_markdown_attrs(wp, wpfn, title=wptitle)
             root['webdesign'][wp] = MarkDownDocument(**wpatts)
+        
         wf = get_workflow(root)
         if wf is not None:
             DBSession.flush()  # Initializes workflow
